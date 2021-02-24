@@ -49,7 +49,7 @@ class Parcel:
             return "XL parcel"
 
     def print_details(self):
-        type = self.size_index
+        parcel_type = self.size_index
         cost = self.cost()
         print(f"{type}: ${cost}")
         extra_weight = self.calculate_extra_weight()
