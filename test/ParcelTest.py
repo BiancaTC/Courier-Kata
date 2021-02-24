@@ -19,6 +19,13 @@ class MyTestCase(unittest.TestCase):
         xl_parcel = Parcel(size=1234)
         assert xl_parcel.cost() == 25
 
+    def test_extra_weight_cost(self):
+        small_parcel = Parcel(size=5, weight=2)
+        assert small_parcel.cost() == 3 + 2
+
+        medium_parcel = Parcel(size=25, weight=6)
+        assert medium_parcel.cost() == 8 + 2 * 3
+
 
 if __name__ == '__main__':
     unittest.main()
