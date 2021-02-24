@@ -27,5 +27,6 @@ class MyTestCase(unittest.TestCase):
         assert medium_parcel.cost() == 8 + 2 * 3
 
 
+
 if __name__ == '__main__':
     unittest.main()
