@@ -26,6 +26,12 @@ class MyTestCase(unittest.TestCase):
         medium_parcel = Parcel(size=25, weight=6)
         assert medium_parcel.cost() == 8 + 2 * 3
 
+    def test_parcel_is_heavy_if_cheaper(self):
+        small_parcel = Parcel(size=5, weight=51)
+        assert small_parcel.cost() == 51
+
+        medium_parcel = Parcel(size=25, weight=23)
+        assert medium_parcel.cost() == 48
 
 
 if __name__ == '__main__':

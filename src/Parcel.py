@@ -2,21 +2,30 @@ PARCELS_CONSTANTS = {
     "Small parcel": {
         "size_limit": 10,
         "cost": 3,
-        "weight_limit": 1
+        "weight_limit": 1,
+        "extra_weight_cost": 2,
     },
     "Medium parcel": {
         "size_limit": 50,
         "cost": 8,
-        "weight_limit": 3
+        "weight_limit": 3,
+        "extra_weight_cost": 2,
     },
     "Large parcel": {
         "size_limit": 100,
         "cost": 15,
-        "weight_limit": 6
+        "weight_limit": 6,
+        "extra_weight_cost": 2,
     },
     "XL parcel": {
         "cost": 25,
-        "weight_limit": 10
+        "weight_limit": 10,
+        "extra_weight_cost": 2,
+    },
+    "Heavy parcel": {
+        "cost": 50,
+        "weight_limit": 50,
+        "extra_weight_cost": 1,
     }
 }
 
@@ -31,7 +40,16 @@ class Parcel:
         cost = PARCELS_CONSTANTS[self.size_index]["cost"]
 
         # parcel extra weight
-        cost += self.calculate_extra_weight() * 2
+        extra_weight = self.calculate_extra_weight()
+        if extra_weight > 0:
+            # check if it would be cheaper to send the send the parcel as a heavy parcel
+            new_cost = cost + extra_weight * PARCELS_CONSTANTS[self.size_index]["extra_weight_cost"]
+            if new_cost > PARCELS_CONSTANTS["Heavy parcel"]["cost"]:
+                self.size_index = "Heavy parcel"
+                new_cost = PARCELS_CONSTANTS[self.size_index]["cost"]
+                new_cost += self.calculate_extra_weight() * PARCELS_CONSTANTS[self.size_index]["extra_weight_cost"]
+
+            cost = new_cost
 
         return cost
 
