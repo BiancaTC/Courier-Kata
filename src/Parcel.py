@@ -7,8 +7,10 @@ class Parcel:
     def __init__(self, size):
         self.size_index = self.calculate_size_index(size)
 
+
     def cost(self):
-        return SIZE_COST[self.size_index]
+        cost = SIZE_COST[self.size_index]
+        return cost
 
     def calculate_size_index(self, size):
         if size < 10:
