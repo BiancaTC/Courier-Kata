@@ -35,6 +35,7 @@ class Parcel:
         self.size_index = self.calculate_size_index(size)
         self.weight = weight
 
+
     def cost(self):
         # initial parcel weight
         cost = PARCELS_CONSTANTS[self.size_index]["cost"]
@@ -67,9 +68,8 @@ class Parcel:
             return "XL parcel"
 
     def print_details(self):
-        parcel_type = self.size_index
         cost = self.cost()
-        print(f"{type}: ${cost}")
+        print(f"{self.size_index}: ${cost}")
         extra_weight = self.calculate_extra_weight()
         if extra_weight:
             print(f"[*] extra weight: {extra_weight} kg")
